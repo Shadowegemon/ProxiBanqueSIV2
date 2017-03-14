@@ -41,8 +41,10 @@ public class ConnectionMysql {
 	
 	public static void Closeconnection()
 	{
+			
 		try {
-			connection.close();
+			if (connection.isValid(0))
+				connection.close();
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

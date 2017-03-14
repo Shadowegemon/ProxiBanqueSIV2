@@ -56,7 +56,7 @@ public class RequestSend {
 		}
     	finally {
 
-    		ConnectionMysql.Closeconnection();
+
 		}
         return clList;
     }
