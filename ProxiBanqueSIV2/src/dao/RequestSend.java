@@ -38,6 +38,7 @@ public class RequestSend {
     
     public static List<Client> getAllClient()
     {
+		ConnectionMysql.ConnectionToBDD();
     	List<Client> clList = new ArrayList<>();
     	String str = "SELECT * from client";
     	
@@ -52,6 +53,10 @@ public class RequestSend {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+    	finally {
+
+    		ConnectionMysql.Closeconnection();
 		}
         return clList;
     }
