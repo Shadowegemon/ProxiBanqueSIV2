@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import metier.Adviser;
 import metier.Client;
+import service.ServiceActor;
 
 /**
  * Servlet implementation class ServletLogin
@@ -56,8 +57,7 @@ public class ServletLogin extends HttpServlet {
 
 		if (Adviser.getInstance().checkPassword(login, pwd)) {
 			session.setAttribute("user", Adviser.getInstance());
-			Collection<Client> listClient = Adviser.getInstance().getListOfClient();
-			request.setAttribute("list", listClient);
+			session.setAttribute("list", ServiceActor.getAllClient());
 			dispatcher = request.getRequestDispatcher("advisorHome.jsp");
 		} else {
 			dispatcher = request.getRequestDispatcher("login.html");
