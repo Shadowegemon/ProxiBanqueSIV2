@@ -51,6 +51,6 @@ public class ServiceActor {
 	 *         client
 	 */
 	public static List<Client> getAllClient() {
-		return DaoClient.getInstance().getClientOfAgence("0");
+		return DaoClient.getInstance().getAllClient();
 	}
 }

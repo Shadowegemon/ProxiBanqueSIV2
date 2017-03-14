@@ -24,7 +24,9 @@ public class DaoClient implements IDaoClient {
 	
 	@Override
 	public void addClient(Client cl) {
-		// TODO Auto-generated method stub
+		ConnectionMysql.ConnectionToBDD();
+		
+		
 
 	}
 
@@ -44,6 +46,10 @@ public class DaoClient implements IDaoClient {
 	public List<Client> getClientOfAgence(String idAg) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public List<Client> getAllClient() {
+		return RequestSend.getAllClient();
+		//return null;
 	}
 
 
