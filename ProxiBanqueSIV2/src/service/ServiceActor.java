@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Collection;
+import java.util.List;
 
 import dao.DaoClient;
 import metier.Adviser;
@@ -28,7 +29,7 @@ public class ServiceActor {
 			adtmp.addClient(cl);
 			cl.setIdAgence(adtmp.getIdAgence());
 		}*/
-		cl.setIdAviser(Adviser.current);
+		//cl.setIdAviser(Adviser.current);
 		DaoClient.getInstance().addClient(cl);
 	}
 
@@ -49,7 +50,7 @@ public class ServiceActor {
 	 * @return Retourne un texte présentant les informations importantes du
 	 *         client
 	 */
-	public static String getAllClient() {
-		return null;
+	public static List<Client> getAllClient() {
+		return DaoClient.getInstance().getClientOfAgence("0");
 	}
 }

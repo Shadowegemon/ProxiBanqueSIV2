@@ -9,14 +9,22 @@ public class Adviser extends Person {
 
 	public static final int MAXCLIENT = 10;
 
-	public static final String LOGIN = "login";
-	public static final String PWD = "pwd";
+	private String login = "maou";
+	private String pwd = "maou";
 
 	private static Adviser INSTANCE = null;
 	private Adviser(){
 		super("", "");
 			}
 	
+	public String getLogin() {
+		return login;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
 	// Point d'acces pour l'instance unique du singleton.
 	public static Adviser getInstance() {
 		if (INSTANCE == null)
@@ -24,8 +32,8 @@ public class Adviser extends Person {
 		return INSTANCE;
 	}
 		
-	public boolean checkPassword(String login, String pwd) {
-		if (LOGIN.equals(login) && PWD.equals(pwd)) {
+	public boolean checkPassword(String nlogin, String npwd) {
+		if (login.equals(nlogin) && pwd.equals(npwd)) {
 			return true;
 		} else {
 			return false;

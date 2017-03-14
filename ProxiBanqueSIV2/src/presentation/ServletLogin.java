@@ -1,6 +1,7 @@
 package presentation;
 
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import metier.Adviser;
+import metier.Client;
 
 /**
  * Servlet implementation class ServletLogin
@@ -49,11 +51,13 @@ public class ServletLogin extends HttpServlet {
 		Adviser.getInstance();
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(30 * 60);
-		session.setAttribute("adviser", Adviser.getInstance());
 
 		RequestDispatcher dispatcher = null;
 
 		if (Adviser.getInstance().checkPassword(login, pwd)) {
+			session.setAttribute("user", Adviser.getInstance());
+			Collection<Client> listClient = Adviser.getInstance().getListOfClient();
+			request.setAttribute("list", listClient);
 			dispatcher = request.getRequestDispatcher("advisorHome.jsp");
 		} else {
 			dispatcher = request.getRequestDispatcher("login.html");
