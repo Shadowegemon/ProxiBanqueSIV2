@@ -7,9 +7,9 @@ public class Person {
 	private String idAgence;
 	private String lastName;
 	private String firstName;
-	private long cellphone;
+	private String cellphone;
 
-	public Person(long id, String adAgence, String lastName, String firstName, long cellphone) {
+	public Person(long id, String adAgence, String lastName, String firstName, String cellphone) {
 		this.id = id;
 		this.idAgence = adAgence;
 		this.lastName = lastName;
@@ -19,7 +19,7 @@ public class Person {
 
 	
 	public Person(String idAgence, String lastName) {
-		this(0, idAgence, lastName, "", 0);
+		this(0, idAgence, lastName, "", "");
 	}
 
 	public long getId() {
@@ -54,11 +54,11 @@ public class Person {
 		this.firstName = firstName;
 	}
 
-	public long getCellphone() {
+	public String getCellphone() {
 		return cellphone;
 	}
 
-	public void setCellphone(long cellphone) {
+	public void setCellphone(String cellphone) {
 		this.cellphone = cellphone;
 	}
 
