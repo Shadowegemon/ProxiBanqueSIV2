@@ -21,13 +21,13 @@
 			<tr>
 				<th>Last Name</th>
 				<th>First Name</th>
-				<th>Celphone</th>
+				<th>Cellphone</th>
 			</tr>
 			<c:forEach var="current" items="${list}">
 				<tr>
 					<td><c:out value="${current.lastName}"></c:out></td>
 					<td><c:out value="${current.firstName}"></c:out></td>
-					<td><c:out value="${current.celphone}"></c:out></td>
+					<td><c:out value="${current.cellphone}"></c:out></td>
 				</tr>
 			</c:forEach>
 		</table>
