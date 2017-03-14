@@ -13,28 +13,19 @@ public class ConnectionMysql {
 	private static String user = "root";
 	private static String password ="";
 
-	public static Boolean ConnectionToBDD() {
+	public static Boolean ConnectionToBDD() throws ClassNotFoundException, SQLException {
 
-		
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
+
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				System.out.println(e.getMessage());
+				// TODO: handle exception
+			}
+			
+			
 			connection = DriverManager.getConnection( urlBdd, user, password );
 			
-			RequestSend.makeStatement(connection);
-		} catch (ClassNotFoundException | SQLException e) {
-			
-			return false;
-			/* Gérer les éventuelles erreurs ici. */
-		}finally {
-		    if ( connection != null )
-		        try {
-		            /* Fermeture de la connexion */
-		        	connection.close();
-		        } catch ( SQLException ignore ) {
-		            /* Si une erreur survient lors de la fermeture, il suffit de l'ignorer. */
-		        }
-		}
 
 		return true;
 	}

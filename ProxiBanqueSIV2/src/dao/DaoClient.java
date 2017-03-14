@@ -24,7 +24,7 @@ public class DaoClient implements IDaoClient {
 	
 	@Override
 	public void addClient(Client cl) {
-		ConnectionMysql.ConnectionToBDD();
+		
 		
 		
 
