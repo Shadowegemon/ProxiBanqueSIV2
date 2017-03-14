@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import metier.Adviser;
-import metier.Client;
 import service.ServiceActor;
 
 /**
@@ -57,7 +55,7 @@ public class ServletLogin extends HttpServlet {
 
 		if (Adviser.getInstance().checkPassword(login, pwd)) {
 			session.setAttribute("user", Adviser.getInstance());
-			session.setAttribute("list", ServiceActor.getAllClient());
+			request.setAttribute("list", ServiceActor.getAllClient());
 			dispatcher = request.getRequestDispatcher("advisorHome.jsp");
 		} else {
 			dispatcher = request.getRequestDispatcher("login.html");

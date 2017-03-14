@@ -1,10 +1,9 @@
 package service;
 
-import java.util.Collection;
 import java.util.List;
 
 import dao.DaoClient;
-import metier.Adviser;
+
 import metier.Client;
 
 public class ServiceActor {
