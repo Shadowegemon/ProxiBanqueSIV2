@@ -6,11 +6,20 @@ import dao.DaoClient;
 
 import metier.Client;
 
+/**
+ * @author adminl
+ *
+ */
 public class ServiceActor {
 
-	
+	/**
+	 * Modification des données d'un client
+	 *  de la base de donnée.
+	 * 
+	 * @param cl = client à modifier
+	 */
 	public static void updateClientToBDD(Client cl) {
-		DaoClient.getInstance().addClient(cl);
+		DaoClient.getInstance().updateClient(cl);
 	}
 
 	/**
@@ -19,8 +28,7 @@ public class ServiceActor {
 	 * alors l'identifiant de ce conseiller SINON aucun conseiller ne lui est
 	 * attribué
 	 * 
-	 * @param cl
-	 *            = nouveau client
+	 * @param cl = nouveau client
 	 */
 	public static void addNewClient(Client cl) {
 	/*	Adviser adtmp = DAO.getInstance().getAdviserDispo();
@@ -42,12 +50,15 @@ public class ServiceActor {
 	}
 
 
+	public static Client getClientById(long id)
+	{
+		return DaoClient.getInstance().getClientById(id);
+	}
 
 
 	/**
 	 * 
-	 * @return Retourne un texte présentant les informations importantes du
-	 *         client
+	 * @return Retourne la liste de tous les clients de la base de données
 	 */
 	public static List<Client> getAllClient() {
 		return DaoClient.getInstance().getAllClient();
