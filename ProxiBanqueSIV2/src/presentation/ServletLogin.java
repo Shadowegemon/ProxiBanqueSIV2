@@ -55,10 +55,10 @@ public class ServletLogin extends HttpServlet {
 
 		if (Adviser.getInstance().checkPassword(login, pwd)) {
 			session.setAttribute("user", Adviser.getInstance());
-			request.setAttribute("list", ServiceActor.getAllClient());
+			session.setAttribute("list", ServiceActor.getAllClient());
 			dispatcher = request.getRequestDispatcher("advisorHome.jsp");
 		} else {
-			dispatcher = request.getRequestDispatcher("login.html");
+			dispatcher = request.getRequestDispatcher("index.jsp");
 		}
 		dispatcher.forward(request, response);
 	}

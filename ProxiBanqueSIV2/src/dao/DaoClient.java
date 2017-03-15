@@ -126,7 +126,7 @@ public class DaoClient implements IDaoClient {
 		try {
 			ConnectionMysql.ConnectionToBDD();
 			RequestSend.makeStatement(ConnectionMysql.connection);
-			RequestSend.stat.executeUpdate(str);
+			System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE   bdd mise a jouer tant de ligne : "+RequestSend.stat.executeUpdate(str));
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,8 +9,8 @@ public class Adviser extends Person {
 
 	public static final int MAXCLIENT = 10;
 
-	private String login = "maou";
-	private String pwd = "maou";
+	private String login = "login";
+	private String pwd = "pwd";
 
 	private static Adviser INSTANCE = null;
 	private Adviser(){
