@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.DaoAccount;
 import dao.DaoClient;
 import metier.AccountCurrent;
@@ -159,4 +161,14 @@ public class ServiceAccount {
 		return true;
 	}
 
+	
+	public static List<BankAccount> getAllAccount()
+	{
+		return DaoAccount.getInstance().getAllAccount();
+	}
+	
+	public static BankAccount getallAccountByClient(long id)
+	{
+		return DaoAccount.getInstance().getAccountById(id);
+	}
 }
