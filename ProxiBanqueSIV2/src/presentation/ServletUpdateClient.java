@@ -87,7 +87,7 @@ public class ServletUpdateClient extends HttpServlet {
 			city = realClientFromList.getTown();
 
 		Client cl = new Client(Long.parseLong(id), "0", lastName, firstName, "0", address, zip, city,email);
-		System.out.println(" client in updateServlet TTTTTTTTT donne moi l'id client stp = "+cl.getId());
+	//	System.out.println(" client in updateServlet TTTTTTTTT donne moi l'id client stp = "+cl.getId());
 		
 		ServiceActor.updateClientToBDD(cl);
 		

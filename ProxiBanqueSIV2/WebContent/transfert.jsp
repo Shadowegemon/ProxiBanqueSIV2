@@ -17,29 +17,7 @@
 		<header class="row">
 		<div class="col-md-5">Interface Proxibanque</div>
 
-		<div class="col-md-7">
-			<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="collapse navbar-collapse"
-					id="bs-example-navbar-collapse-1">
-					<form action="ServletLogin" method="post" id="signin"
-						class="navbar-form navbar-right" role="form">
-						<div class="input-group">
-							<span class="input-group-addon">L</span> <input id="email"
-								type="text" class="form-control" name="loginuser" value=""
-								placeholder="Login">
-						</div>
-						<div class="input-group">
-							<span class="input-group-addon">P</span> <input id="password"
-								type="password" class="form-control" name="password" value=""
-								placeholder="Password">
-						</div>
-						<button type="submit" class="btn btn-primary">Login</button>
-					</form>
-				</div>
-			</div>
-			</nav>
-		</div>
+		<div class="col-md-7"></div>
 		</header>
 
 
@@ -54,7 +32,7 @@
 						<li class="nav-header">Menu conseiller</li>
 						<li><a href="advisorHome.jsp">Liste clients</a></li>
 						<li><a href="updateClient">Editer client</a></li>
-						<li><a href="#">Liste comptes</a></li>
+						<li><a href="listAccount.jsp">Liste comptes</a></li>
 						<li class="active"><a href="transfert.jsp">Virement</a></li>
 
 						<li>
@@ -74,38 +52,60 @@
 				<div class="panel-body">
 
 
-					<form class="form-inline">
+					<form action="ServletTransfert" method="post"
+						class="form-inline">
 						<div class="form-group">
-							<select id="select" class="form-control">
+							<select id="select" class="form-control"
+								onclick="this.form.idHost.value=this.options[this.selectedIndex].value;">
 								<option value="">Compte à débiter</option>
-								<option value="c1">Compte 1</option>
-								<option value="c2">Compte 2</option>
-								<option value="c3">Compte 3</option>
+								<c:forEach var="c" items="${listCount}">
+									<option value="${c.numAccount}">Compte n°
+										<c:out value="${c.numAccount}" />, Solde
+										<c:out value="${c.sold}" /></option>
+								</c:forEach>
 							</select>
 						</div>
-						<div class="form-group">
-							<select id="select" class="form-control">
-								<option value="">Compte à créditer</option>
-								<option value="c1">Compte 1</option>
-								<option value="c2">Compte 2</option>
-								<option value="c3">Compte 3</option>
-							</select>
-						</div>
-					</form>
 
-					<form class="form-inline">
+						<div class="form-group">
+							<select id="select" class="form-control"
+								onclick="this.form.idDest.value=this.options[this.selectedIndex].value;">
+								<option value="">Compte à créditer</option>
+								<c:forEach var="c" items="${listCount}">
+									<option value="${c.numAccount}">Compte n°
+										<c:out value="${c.numAccount}" />, Solde
+										<c:out value="${c.sold}" /></option>
+								</c:forEach>
+							</select>
+						</div>
+
 						<div class="form-group">
 							<div class="input-group">
 								<input type="number" class="form-control"
-									style="text-align: right" placeholder="Montant"> <span
-									class="input-group-addon">€</span> <span
-									class="input-group-btn">
-									<button class="form-control" type="button">Valider</button>
+									style="text-align: right" id="montant" name="montant"
+									placeholder="Montant"> <span class="input-group-addon">€</span>
+								<span class="input-group-btn">
+									<button class="form-control" type="submit">Valider</button>
 									<button class="form-control" type="button">Annuler</button>
 								</span>
 							</div>
 						</div>
+						<div class="form-group">
+							<label for="host">Compte à débiter</label> <input type="text"
+								class="form-control" id="idHost" name="idHost"
+								readonly>
+						</div>
+						<div class="form-group">
+							<label for="dest">Compte à créditer</label> <input type="text"
+								class="form-control" id="idDest" name="idDest"
+								readonly>
+						</div>
+						
 					</form>
+					
+					
+						
+					
+					
 				</div>
 			</div>
 

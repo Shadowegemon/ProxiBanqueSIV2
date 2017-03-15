@@ -32,12 +32,12 @@
 					<ul class="nav nav-list">
 
 						<li class="nav-header">Menu conseiller</li>
-						<li class="active"><a href="advisorHome.jsp">Liste
+						<li ><a href="advisorHome.jsp">Liste
 								clients</a></li>
 							<li><a href="updateClient.jsp">Editer Client</a></li>
 						
 						
-						<li><a href="listAccount.jsp">Liste comptes</a></li>
+						<li class="active"><a href="listAccount.jsp">Liste comptes</a></li>
 
 						<li><a href="transfert.jsp">Virement</a></li>
 						<li>
@@ -50,31 +50,30 @@
 			</div>
 			</nav>
 
-			<section class="col-md-10"> <legend>Liste de vos
-				clients</legend>
+			<section class="col-md-10"> <legend>Liste des comptes</legend>
 				
 				
 			<div class="row">
 
 
-				<c:if test="${not empty list}">
+				<c:if test="${not empty listCount}">
 					<table>
 						<tr>
-							<th>Last Name</th>
-							<th>First Name</th>
-							<th>Cellphone</th>
+							<th>N° compte</th>
+							<th>Solde</th>
+							<th>Date d'ouverture</th>
 						</tr>
-						<c:forEach var="current" items="${list}">
+						<c:forEach var="current" items="${listCount}">
 							<tr>
-								<td><c:out value="${current.lastName}"></c:out></td>
-								<td><c:out value="${current.firstName}"></c:out></td>
-								<td><c:out value="${current.cellphone}"></c:out></td>
+								<td><c:out value="${current.numAccount}"></c:out></td>
+								<td><c:out value="${current.sold}"></c:out></td>
+								<td><c:out value="${current.openDate}"></c:out></td>
 							</tr>
 						</c:forEach>
 					</table>
 				</c:if>
 				<c:if test="${empty list}">
-					<p>Vous n'avez pas de client</p>
+					<p>Il n'y a pas de compte</p>
 				</c:if>
 
 

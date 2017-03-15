@@ -32,7 +32,7 @@
 						<li class="nav-header">Menu conseiller</li>
 						<li><a href="advisorHome.jsp">Liste clients</a></li>
 						<li class="active"><a href="updateClient">Editer client</a></li>
-						<li><a href="#">Liste comptes</a></li>
+						<li><a href="listAccount.jsp">Liste comptes</a></li>
 						<li><a href="transfert.jsp">Virement</a></li>
 
 						<li>
