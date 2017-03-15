@@ -1,5 +1,6 @@
 package service;
 
+import dao.DaoAccount;
 import dao.DaoClient;
 import metier.AccountCurrent;
 import metier.AccountSaving;
@@ -8,11 +9,13 @@ import metier.BankAccount.etype;
 import metier.Client;
 
 /**
- * @author Jonas Samuel
+ * @author Jonas Maeva
  *
  */
 public class ServiceAccount {
 
+	
+	public static long RITCH_CONDITION = 500000;
 	/**
 	 * Ajoute un compte au client selon son type. 
 	 * @param idClient : client identifiant
@@ -44,6 +47,7 @@ public class ServiceAccount {
 	 */
 	public static void removeAccountToClient(long idClient, BankAccount.etype type) {
 		Client tmp = DaoClient.getInstance().getClientById(idClient);
+		DaoAccount.getInstance().removeAccountById(tmp.getAccount(type));
 		tmp.removeBankAccount(tmp.getAccount(type));
 
 	}
@@ -55,6 +59,7 @@ public class ServiceAccount {
 	 */
 	public static void updateOverdrawToClient(long idClient, long newOverdraft) {
 		DaoClient.getInstance().getClientById(idClient).setOverdraftRate(newOverdraft);
+		DaoClient.getInstance().updateClient(DaoClient.getInstance().getClientById(idClient));
 	}
 
 /**
@@ -63,16 +68,27 @@ public class ServiceAccount {
  * @param dest : compt créditeur
  * @param sold : somme
  */
-	public static void transferAccoutToAccount(BankAccount host, BankAccount dest, long sold) {
+	public static void transferAccoutToAccount(BankAccount host, BankAccount dest, double sold) {
 		
 			host.setSold(-sold);
+			DaoAccount.getInstance().updateAccountByid(host.getNumAccount(), host.getSold());
 			dest.setSold(sold);
+			DaoAccount.getInstance().updateAccountByid(dest.getNumAccount(), dest.getSold());
 			if (!checkRich(host))
-				DaoClient.getInstance().getClientById(dest.getIdClient()).setClientIsRich(false);
+			{
+				Client destClient = DaoClient.getInstance().getClientById(dest.getIdClient());
+				destClient.setClientIsRich(false);
+				DaoClient.getInstance().updateClient(destClient);
+			}
 			if (!checkOverdraft(dest))
 			{
 				if(checkRich(dest))
-					DaoClient.getInstance().getClientById(dest.getIdClient()).setClientIsRich(true);
+				{
+					Client destClientRitch = DaoClient.getInstance().getClientById(dest.getIdClient());
+					destClientRitch.setClientIsRich(true);
+					DaoClient.getInstance().updateClient(destClientRitch);
+					
+				}
 			}
 			else
 				SService.sendInfoToclient(host.getIdClient(), "Carfull you still overdraw , sold : "+dest.getSold());
@@ -113,7 +129,7 @@ public class ServiceAccount {
 		}
 			
 		
-		if (tmpsold < 500000) // /!\ ATTENTION CHANGE TO STAITC VARIABLE
+		if (tmpsold < RITCH_CONDITION) 
 			return false;
 		return true;
 	}

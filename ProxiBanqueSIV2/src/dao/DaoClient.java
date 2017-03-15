@@ -27,14 +27,16 @@ public class DaoClient implements IDaoClient {
 	
 	@Override
 	public void addClient(Client cl) {
-		String str = "insert into CLIENT values(null, '0', '"+cl.getLastName()+"', '"+cl.getFirstName()+"', '"+cl.getCellphone()+"', '"+cl.getAddress()+"', '"+cl.getZipCode()+"', '"+cl.getTown()+"')";
+		String str = "insert into CLIENT values(null, '0', '"+cl.getLastName()+"', '"+cl.getFirstName()+"', '"+cl.getCellphone()+"', '"+cl.getAddress()+"', '"+cl.getZipCode()+"', '"+cl.getTown()+"', '"+cl.getOverdraftRate()+"')";
 		try {
+			ConnectionMysql.ConnectionToBDD();
 			RequestSend.stat.executeQuery(str);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+		ConnectionMysql.Closeconnection();
 
 	}
 
@@ -42,11 +44,15 @@ public class DaoClient implements IDaoClient {
 	public void removeClient(Client cl) {
 		String str = "DELETE FROM `client` WHERE `client`.`idClient` = "+cl.getId();
 		try {
+
+			ConnectionMysql.ConnectionToBDD();
 			RequestSend.stat.executeQuery(str);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		ConnectionMysql.Closeconnection();
 	}
 
 	@Override
@@ -55,14 +61,17 @@ public class DaoClient implements IDaoClient {
 		Client clret = null;
 		ResultSet rs;
 		try {
+			ConnectionMysql.ConnectionToBDD();
 			rs = RequestSend.stat.executeQuery(str);
 			rs.next();
 			
 			 clret = new Client(rs.getInt("idclient"), "0", rs.getString("lastName"), rs.getString("firstName"), rs.getString("celphone"), rs.getString("addresse"), rs.getString("zipCode"), rs.getString("town"));
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		ConnectionMysql.Closeconnection();
 		return clret;
 	}
 
@@ -98,17 +107,22 @@ public class DaoClient implements IDaoClient {
 		//return null;
 	}
 
-
+	/**
+	 * Modifi le client sur la base de donnée par rapport au client envoyer en paramettre
+	 */
 	@Override
 	public void updateClient(Client cl) {
-		String str = "UPDATE `client` SET `lastName` = '"+cl.getLastName()+"', `firstName` = '"+cl.getFirstName()+"', `addresse` = '"+cl.getAddress()+"', `zipCode` = '"+cl.getZipCode()+"', `town` = '"+cl.getTown()+"', `celphone` = '"+cl.getCellphone()+"', `isRitch` = '"+cl.isClientIsRich()+"', WHERE `client`.`idClient` ="+cl.getId();
+
+		String str = "UPDATE `client` SET `lastName` = '"+cl.getLastName()+"', `firstName` = '"+cl.getFirstName()+"', `addresse` = '"+cl.getAddress()+"', `zipCode` = '"+cl.getZipCode()+"', `town` = '"+cl.getTown()+"', `celphone` = '"+cl.getCellphone()+"', `isRitch` = '"+cl.isClientIsRich()+"', '"+cl.getOverdraftRate()+"' WHERE `client`.`idClient` ="+cl.getId();
 
 		try {
+			ConnectionMysql.ConnectionToBDD();
 			RequestSend.stat.executeQuery(str);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ConnectionMysql.Closeconnection();
 	}
 
 

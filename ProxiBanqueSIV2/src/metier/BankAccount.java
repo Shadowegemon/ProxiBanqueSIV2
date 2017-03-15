@@ -9,8 +9,6 @@ public class BankAccount {
 	private double sold;
 	private String openDate;
 
-	private static long newId = 1;
-
 	public enum etype {
 		CURRENT_ACCOUNT, SAVING_ACCOUNT
 	};
@@ -23,11 +21,10 @@ public class BankAccount {
 		return type;
 	}
 
-	public BankAccount(long idClient, double sold, String openDate) {
+	public BankAccount(long idClient, double sold, String openDate, etype type) {
 		super();
 		this.idClient = idClient;
-		newId++;
-		this.numAccount = newId;
+		this.type = type;
 		this.sold = sold;
 		this.openDate = openDate;
 	}

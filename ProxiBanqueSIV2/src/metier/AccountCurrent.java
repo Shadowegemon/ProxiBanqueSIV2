@@ -9,7 +9,7 @@ public class AccountCurrent extends BankAccount{
 	
 //	Constructeur
 	public AccountCurrent(long idClient, double sold, String openDate) {
-		super(idClient, sold, openDate);
+		super(idClient, sold, openDate, etype.CURRENT_ACCOUNT);
 		this.isOverdraw = false;
 	super.type = BankAccount.etype.CURRENT_ACCOUNT;
 	}
