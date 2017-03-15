@@ -23,6 +23,9 @@ public class DaoClient implements IDaoClient {
 		return INSTANCE;
 	}
 
+	/**
+	 * ajout un client dans la base de données
+	 */
 	@Override
 	public void addClient(Client cl) {
 		String str = "insert into CLIENT values(null, '0', '" + cl.getLastName() + "', '" + cl.getFirstName() + "', '"
@@ -40,6 +43,9 @@ public class DaoClient implements IDaoClient {
 		ConnectionMysql.Closeconnection();
 
 	}
+	/**
+	 * supprime le client dans la base de données
+	 */
 
 	@Override
 	public void removeClient(Client cl) {
@@ -57,6 +63,10 @@ public class DaoClient implements IDaoClient {
 		ConnectionMysql.Closeconnection();
 	}
 
+	/**
+	 * 
+	 * @return renvois le client de la base de données depuis son id
+	 */
 	@Override
 	public Client getClientById(Long id) {
 		String str = "SELECT * FROM client WHERE client.idClient=" + id;
@@ -79,10 +89,20 @@ public class DaoClient implements IDaoClient {
 		return clret;
 	}
 
+	/**
+	 * @deprecated
+	 * @param idAg : identifiant de l'agence
+	 * @return list des clients par agence
+	 */
 	public List<Client> getClientOfAgence(String idAg) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @return la liste de tous les clients
+	 */
 
 	public List<Client> getAllClient() {
 		List<Client> clList = new ArrayList<>();

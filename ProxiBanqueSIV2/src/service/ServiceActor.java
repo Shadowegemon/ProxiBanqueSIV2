@@ -41,7 +41,7 @@ public class ServiceActor {
 	}
 
 	/**
-	 * Supprime un client de la base de données
+	 * Demande la suppression d'un client à la base de données
 	 * 
 	 * @param cl
 	 */
