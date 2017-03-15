@@ -100,7 +100,7 @@ public class ServiceAccount {
 
 		// System.out.println("dest new sold =
 		// "+DaoAccount.getInstance().getAccountById(dest.getNumAccount()).getSold());
-		if (!checkRich(host)) {
+	/*	if (!checkRich(host)) {
 			Client destClient = DaoClient.getInstance().getClientById(dest.getIdClient());
 			destClient.setClientIsRich(false);
 			DaoClient.getInstance().updateClient(destClient);
@@ -117,7 +117,7 @@ public class ServiceAccount {
 
 		if (!checkOverdraft(host))
 			SService.sendInfoToclient(host.getIdClient(),
-					"Carfull you don't have enought money to make a transfert sold : " + host.getSold());
+					"Carfull you don't have enought money to make a transfert sold : " + host.getSold());*/
 	}
 
 	/**
