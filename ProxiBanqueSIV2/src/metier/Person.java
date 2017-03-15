@@ -8,18 +8,20 @@ public class Person {
 	private String lastName;
 	private String firstName;
 	private String cellphone;
+	private String email;
 
-	public Person(long id, String adAgence, String lastName, String firstName, String cellphone) {
+	public Person(long id, String adAgence, String lastName, String firstName, String cellphone, String email) {
 		this.id = id;
 		this.idAgence = adAgence;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.cellphone = cellphone;
+		this.email = email;
 	}
 
 	
 	public Person(String idAgence, String lastName) {
-		this(0, idAgence, lastName, "", "");
+		this(0, idAgence, lastName, "", "", "");
 	}
 
 	public long getId() {

@@ -26,8 +26,8 @@ public class Client extends Person {
 	protected etype type;
 
 	public Client(long id, String idAgence, String lastName, String firstName, String cellphone, String adress,
-			String zipCode, String town) {
-		super(id, idAgence, lastName, firstName, cellphone);
+			String zipCode, String town, String email) {
+		super(id, idAgence, lastName, firstName, cellphone, email);
 		this.address = adress;
 		this.zipCode = zipCode;
 		this.town = town;
@@ -35,7 +35,7 @@ public class Client extends Person {
 	}
 
 	public Client(String idAgence, String lastName) {
-		this(0, idAgence, lastName, "", "", "", "", ""); // 
+		this(0, idAgence, lastName, "", "", "", "", "", ""); // 
 	}
 
 	public Adviser getIdAviser() {

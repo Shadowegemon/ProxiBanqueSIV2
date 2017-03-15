@@ -21,8 +21,9 @@ public class BankAccount {
 		return type;
 	}
 
-	public BankAccount(long idClient, double sold, String openDate, etype type) {
+	public BankAccount(long numAccount, long idClient, double sold, String openDate, etype type) {
 		super();
+		this.numAccount = numAccount;
 		this.idClient = idClient;
 		this.type = type;
 		this.sold = sold;
@@ -31,7 +32,7 @@ public class BankAccount {
 
 	// Getters setters
 	public double getSold() {
-		return sold;
+		return this.sold;
 	}
 
 	public void setSold(double sold) {

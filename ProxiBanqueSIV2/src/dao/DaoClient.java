@@ -91,11 +91,11 @@ public class DaoClient implements IDaoClient {
 			RequestSend.makeStatement(ConnectionMysql.connection);
 
 			String str = "SELECT * from CLIENT";
-			RequestSend.rs = RequestSend.stat.executeQuery(str);
+			ResultSet rs = RequestSend.stat.executeQuery(str);
 			while (RequestSend.rs.next()) {
-				Client tmp = new Client(RequestSend.rs.getLong("idClient"), RequestSend.rs.getString("idAgence"), RequestSend.rs.getString("lastName"),
-						RequestSend.rs.getString("firstName"), RequestSend.rs.getString("celphone"), RequestSend.rs.getString("addresse"),
-						RequestSend.rs.getString("zipCode"), RequestSend.rs.getString("town"));
+				Client tmp = new Client(rs.getLong("idClient"), rs.getString("idAgence"), rs.getString("lastName"),
+						rs.getString("firstName"), rs.getString("celphone"), rs.getString("addresse"),
+						rs.getString("zipCode"), rs.getString("town"), rs.getString("email"));
 				clList.add(tmp);
 			}
 		} catch (SQLException | ClassNotFoundException e) {
@@ -121,7 +121,7 @@ public class DaoClient implements IDaoClient {
 		try {
 			ConnectionMysql.ConnectionToBDD();
 			RequestSend.makeStatement(ConnectionMysql.connection);
-			RequestSend.stat.executeQuery(str);
+			RequestSend.stat.executeUpdate(str);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

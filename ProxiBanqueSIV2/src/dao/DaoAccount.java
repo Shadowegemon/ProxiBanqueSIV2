@@ -37,7 +37,7 @@ public class DaoAccount implements IDaoAccount {
 			ResultSet rs = RequestSend.stat.executeQuery(str);
 			while (rs.next())
 			{
-				BankAccount tmp = new BankAccount(id, rs.getDouble("sold"), rs.getString("openDate"), etype.valueOf(rs.getString("typeOfAccount")));
+				BankAccount tmp = new BankAccount(rs.getLong("numAccount") ,id, rs.getDouble("sold"), rs.getString("openDate"), etype.valueOf(rs.getString("typeOfAccount")));
 				baList.add(tmp);
 			}
 		} catch (SQLException | ClassNotFoundException e) {
@@ -54,16 +54,17 @@ public class DaoAccount implements IDaoAccount {
 	 */
 	@Override
 	public void updateAccountByid(long id, double money) {
-		String str = "UPDATE account SET sold = '"+money+"' WHERE account.idAccount ="+id;
-
+		String str = "UPDATE account SET sold = "+money+" WHERE account.numAccount ="+id;
 		try {
 
 			ConnectionMysql.ConnectionToBDD();
 			RequestSend.makeStatement(ConnectionMysql.connection);
-			RequestSend.stat.executeQuery(str);
+			RequestSend.stat.executeUpdate(str);
+			
+			
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 		ConnectionMysql.Closeconnection();
@@ -79,14 +80,14 @@ public class DaoAccount implements IDaoAccount {
 	public List<BankAccount> getAllAccount() {
 		List<BankAccount> baList = new ArrayList<>();
 		
-		String str = "SELECT * FROM `account'";
+		String str = "SELECT * FROM account";
 		try {
 			ConnectionMysql.ConnectionToBDD();
 			RequestSend.makeStatement(ConnectionMysql.connection);
 			ResultSet rs = RequestSend.stat.executeQuery(str);
 			while (rs.next())
 			{
-				BankAccount tmp = new BankAccount(rs.getLong("idclient"), rs.getDouble("sold"), rs.getString("openDate"), etype.valueOf(rs.getString("typeOfAccount")));
+				BankAccount tmp = new BankAccount(rs.getLong("numAccount"), rs.getLong("idclient"), rs.getDouble("sold"), rs.getString("openDate"), etype.valueOf(rs.getString("typeOfAccount")));
 				baList.add(tmp);
 			}
 		} catch (SQLException | ClassNotFoundException e) {
@@ -103,14 +104,15 @@ public class DaoAccount implements IDaoAccount {
 	 */
 	@Override
 	public BankAccount getAccountById(long id) {
-		String str = "SELECT * FROM account WHERE idAccount="+id;
+		String str = "SELECT * FROM account WHERE numAccount="+id;
 
 		try {
 			ConnectionMysql.ConnectionToBDD();
 			RequestSend.makeStatement(ConnectionMysql.connection);
 			ResultSet rs = RequestSend.stat.executeQuery(str);
 			rs.next();
-			BankAccount retba = new BankAccount(rs.getLong("idclient"), rs.getDouble("sold"),rs.getString("openDate"),etype.valueOf(rs.getString("typeOfAccount")));
+			BankAccount retba = new BankAccount(rs.getLong("numAccount") ,rs.getLong("idclient"), rs.getDouble("sold"),rs.getString("openDate"),etype.valueOf(rs.getString("typeOfAccount")));
+			
 			ConnectionMysql.Closeconnection();
 			return retba;
 		} catch (SQLException | ClassNotFoundException e) {
@@ -122,10 +124,24 @@ public class DaoAccount implements IDaoAccount {
 		return null;
 	}
 
+	/**
+	 * supprime 
+	 */
 	@Override
 	public void removeAccountById(BankAccount ba) {
-		// TODO Auto-generated method stub
 		
+		String str = "DELETE FROM account WHERE account.numAccount = "+ba.getNumAccount();
+		
+
+		try {
+			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
+			RequestSend.stat.executeUpdate(str);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ConnectionMysql.Closeconnection();
 	}
 
 }
