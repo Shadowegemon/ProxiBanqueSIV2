@@ -25,7 +25,7 @@ public class ServiceAccount {
 	 * @param idClient
 	 *            : client identifiant
 	 * @param type
-	 *            : type de compt
+	 *            : type de compte
 	 * @param startSold
 	 *            : montant à la création du compte, ne peux être négatif
 	 */
@@ -49,7 +49,7 @@ public class ServiceAccount {
 	}
 
 	/**
-	 * Suppirme un client de la base de donner.
+	 * Supprime un client de la base de données
 	 * 
 	 * @param idClient
 	 *            : client identifiant
@@ -64,7 +64,7 @@ public class ServiceAccount {
 	}
 
 	/**
-	 * Mets ajour le découvert d'un compte
+	 * Mets à jour le découvert d'un compte
 	 * 
 	 * @param idClient
 	 *            : client identifiant
@@ -77,7 +77,7 @@ public class ServiceAccount {
 	}
 
 	/**
-	 * Effecture transèfe de sold ddu compte host au compt dest
+	 * Effectuer un transfère de solds du compte host au compte dest
 	 * 
 	 * @param host
 	 *            : compte débiteur
@@ -121,11 +121,11 @@ public class ServiceAccount {
 	}
 
 	/**
-	 * Vérification du solde du compte, est il à découvert
+	 * Vérification du solde du compte, découvert ou non
 	 * 
 	 * @param myAccount
 	 *            : compte à vérifier
-	 * @return vrais si à découvert, faux si pas à découvert
+	 * @return vrai si à découvert, faux si non
 	 */
 	public static boolean checkOverdraft(BankAccount myAccount) {
 		if (myAccount.getSold() > DaoClient.getInstance().getClientById(myAccount.getIdClient()).getOverdraftRate())
@@ -134,11 +134,11 @@ public class ServiceAccount {
 	}
 
 	/**
-	 * Vérification du solde pour savoir s'il est riche
+	 * Vérification du solde pour savoir si il est riche
 	 * 
 	 * @param myAccount
 	 *            : compte à vérifier
-	 * @return vrais si le client a plus de 500000, faux si le client à moins de
+	 * @return vrai si le client a plus de 500000, faux si le client a moins de
 	 *         500000
 	 */
 	public static boolean checkRich(BankAccount myAccount) {

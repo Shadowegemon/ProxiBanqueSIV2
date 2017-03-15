@@ -7,14 +7,14 @@ import dao.DaoClient;
 import metier.Client;
 
 /**
- * @author adminl
+ * @author Jonas Maeva
  *
  */
 public class ServiceActor {
 
 	/**
 	 * Modification des données d'un client
-	 *  de la base de donnée.
+	 *  de la base de données
 	 * 
 	 * @param cl = client à modifier
 	 */
@@ -24,7 +24,7 @@ public class ServiceActor {
 
 	/**
 	 * Ajout du client dans la base de données, ajout du client dans la liste
-	 * des clients d'un conseiller SI en existe de disponible le client reçoit
+	 * des clients d'un conseiller SI il en existe de disponible le client reçoit
 	 * alors l'identifiant de ce conseiller SINON aucun conseiller ne lui est
 	 * attribué
 	 * 

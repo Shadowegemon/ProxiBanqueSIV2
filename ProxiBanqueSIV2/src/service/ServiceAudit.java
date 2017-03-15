@@ -15,7 +15,7 @@ public class ServiceAudit extends SService {
 	private static double valueAuditCasual = -5000.0;
 	private static double valueAuditEntreprise = -50000.0;
 /**
- * Faire un audit pour vérifier les comptes client débiteur
+ * Faire un audit pour vérifier les comptes clients débiteurs
  * @param idAg : récupère l'identifiant d'une agence
  */
 	public void doAudit(String idAg) {

@@ -1,5 +1,8 @@
 package presentation;
-
+/**
+ * @author Jonas Maeva
+ *
+ */
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ServletLogout
+ * Permet de "déloguer" l'utilisateur et de désactiver la session
  */
 @WebServlet("/ServletLogout")
 public class ServletLogout extends HttpServlet {

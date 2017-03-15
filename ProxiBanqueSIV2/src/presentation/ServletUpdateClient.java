@@ -43,7 +43,10 @@ public class ServletUpdateClient extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 *      response) /**
+	 * @deprecated Récupère les paramètres du formulaire de mise à jour des
+	 *             données client pour requète à la base de données et mise à
+	 *             jour des infos client
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -86,12 +89,11 @@ public class ServletUpdateClient extends HttpServlet {
 		if (city.equals(null) && !realClientFromList.getTown().equals(null))
 			city = realClientFromList.getTown();
 
-		Client cl = new Client(Long.parseLong(id), "0", lastName, firstName, "0", address, zip, city,email);
-	//	System.out.println(" client in updateServlet TTTTTTTTT donne moi l'id client stp = "+cl.getId());
-		
+		Client cl = new Client(Long.parseLong(id), "0", lastName, firstName, "0", address, zip, city, email);
+		// System.out.println(" client in updateServlet TTTTTTTTT donne moi l'id
+		// client stp = "+cl.getId());
+
 		ServiceActor.updateClientToBDD(cl);
-		
-		
 
 		RequestDispatcher dispatcher = null;
 		session.setAttribute("list", ServiceActor.getAllClient());

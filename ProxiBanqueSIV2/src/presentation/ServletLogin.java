@@ -1,5 +1,8 @@
 package presentation;
-
+/**
+ * @author Jonas Maeva
+ *
+ */
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +19,8 @@ import service.ServiceActor;
 
 /**
  * Servlet implementation class ServletLogin
+ * Permet de vérifier l'authentification de l'utilisateur
+ * Met en session : liste des comptes, listes de clients
  */
 @WebServlet("/ServletLogin")
 public class ServletLogin extends HttpServlet {

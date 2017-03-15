@@ -9,7 +9,7 @@ import metier.CardVisa;
 import metier.Client;
 
 /**
- * @author Jonas Samuel
+ * @author Jonas Maëva
  *
  */
 public class ServiceCard extends SService {
