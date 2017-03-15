@@ -167,7 +167,7 @@ public class ServiceAccount {
 		return DaoAccount.getInstance().getAllAccount();
 	}
 	
-	public static BankAccount getallAccountByClient(long id)
+	public static BankAccount getAccountById(long id)
 	{
 		return DaoAccount.getInstance().getAccountById(id);
 	}
