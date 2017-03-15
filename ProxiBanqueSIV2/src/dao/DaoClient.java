@@ -43,6 +43,7 @@ public class DaoClient implements IDaoClient {
 		ConnectionMysql.Closeconnection();
 
 	}
+
 	/**
 	 * supprime le client dans la base de données
 	 */
@@ -79,7 +80,8 @@ public class DaoClient implements IDaoClient {
 			rs.next();
 
 			clret = new Client(rs.getInt("idclient"), "0", rs.getString("lastName"), rs.getString("firstName"),
-					rs.getString("celphone"), rs.getString("addresse"), rs.getString("zipCode"), rs.getString("town"), rs.getString("email"));
+					rs.getString("celphone"), rs.getString("addresse"), rs.getString("zipCode"), rs.getString("town"),
+					rs.getString("email"));
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,14 +93,15 @@ public class DaoClient implements IDaoClient {
 
 	/**
 	 * @deprecated
-	 * @param idAg : identifiant de l'agence
+	 * @param idAg
+	 *            : identifiant de l'agence
 	 * @return list des clients par agence
 	 */
 	public List<Client> getClientOfAgence(String idAg) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @return la liste de tous les clients
@@ -138,15 +141,18 @@ public class DaoClient implements IDaoClient {
 	@Override
 	public void updateClient(Client cl) {
 
-		String str = "UPDATE `client` SET `lastName` = '" + cl.getLastName() + "', `firstName` = '" + cl.getFirstName()
-				+ "', `addresse` = '" + cl.getAddress() + "', `zipCode` = '" + cl.getZipCode() + "', `town` = '"
-				+ cl.getTown() + "', `celphone` = '" + cl.getCellphone() + "', `isRitch` = '" + cl.isClientIsRich()
-				+ "', '" + cl.getOverdraftRate() + "' WHERE `client`.`idClient` =" + cl.getId();
+		// update client bsdd is in actinon ");
+		String str = "UPDATE client SET lastName = '" + cl.getLastName() + "', firstName = '" + cl.getFirstName()
+				+ "', addresse = '" + cl.getAddress() + "', zipCode = '" + cl.getZipCode() + "', town = '"
+				+ cl.getTown() + "', celphone = '" + cl.getCellphone() + "', isRitch = '" + cl.isClientIsRich()
+				+ "', email='" + cl.getEmail() + "' ,overdraft='" + cl.getOverdraftRate()
+				+ "' WHERE client.idClient = '" + cl.getId() + "'";
+		//System.out.println("str into updateClient : " + str);
 
 		try {
 			ConnectionMysql.ConnectionToBDD();
 			RequestSend.makeStatement(ConnectionMysql.connection);
-			System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE   bdd mise a jouer tant de ligne : "+RequestSend.stat.executeUpdate(str));
+			RequestSend.stat.executeUpdate(str);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
