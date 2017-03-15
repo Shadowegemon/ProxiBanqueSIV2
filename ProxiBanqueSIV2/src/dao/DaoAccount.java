@@ -33,6 +33,7 @@ public class DaoAccount implements IDaoAccount {
 		String str = "SELECT * FROM account WHERE account.idclient ="+id;
 		try {
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			ResultSet rs = RequestSend.stat.executeQuery(str);
 			while (rs.next())
 			{
@@ -58,6 +59,7 @@ public class DaoAccount implements IDaoAccount {
 		try {
 
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			RequestSend.stat.executeQuery(str);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -80,6 +82,7 @@ public class DaoAccount implements IDaoAccount {
 		String str = "SELECT * FROM `account'";
 		try {
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			ResultSet rs = RequestSend.stat.executeQuery(str);
 			while (rs.next())
 			{
@@ -104,11 +107,10 @@ public class DaoAccount implements IDaoAccount {
 
 		try {
 			ConnectionMysql.ConnectionToBDD();
-			System.out.println("test stat = "+RequestSend.stat);
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			ResultSet rs = RequestSend.stat.executeQuery(str);
 			rs.next();
 			BankAccount retba = new BankAccount(rs.getLong("idclient"), rs.getDouble("sold"),rs.getString("openDate"),etype.valueOf(rs.getString("typeOfAccount")));
-			System.out.println("DaoAccount getAccountById ret = "+retba);
 			ConnectionMysql.Closeconnection();
 			return retba;
 		} catch (SQLException | ClassNotFoundException e) {

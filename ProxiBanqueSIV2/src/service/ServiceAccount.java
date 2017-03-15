@@ -31,10 +31,10 @@ public class ServiceAccount {
 		
 		switch (type) {
 		case CURRENT_ACCOUNT:
-			DaoClient.getInstance().getClientById(idClient).addBankAccount(new AccountCurrent(idClient, startSold, "today"));
+			DaoClient.getInstance().getClientById(idClient).addBankAccount(new AccountCurrent(idClient, startSold, "15/03/2017"));
 			break;
 		case SAVING_ACCOUNT:
-			DaoClient.getInstance().getClientById(idClient).addBankAccount(new AccountSaving(idClient, startSold, "today"));
+			DaoClient.getInstance().getClientById(idClient).addBankAccount(new AccountSaving(idClient, startSold, "15/03/2017"));
 			break;
 
 		}

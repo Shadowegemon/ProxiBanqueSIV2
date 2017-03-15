@@ -30,6 +30,7 @@ public class DaoClient implements IDaoClient {
 		String str = "insert into CLIENT values(null, '0', '"+cl.getLastName()+"', '"+cl.getFirstName()+"', '"+cl.getCellphone()+"', '"+cl.getAddress()+"', '"+cl.getZipCode()+"', '"+cl.getTown()+"', '"+cl.getOverdraftRate()+"')";
 		try {
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			RequestSend.stat.executeQuery(str);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -46,6 +47,7 @@ public class DaoClient implements IDaoClient {
 		try {
 
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			RequestSend.stat.executeQuery(str);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -62,6 +64,7 @@ public class DaoClient implements IDaoClient {
 		ResultSet rs;
 		try {
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			rs = RequestSend.stat.executeQuery(str);
 			rs.next();
 			
@@ -117,6 +120,7 @@ public class DaoClient implements IDaoClient {
 
 		try {
 			ConnectionMysql.ConnectionToBDD();
+			RequestSend.makeStatement(ConnectionMysql.connection);
 			RequestSend.stat.executeQuery(str);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
